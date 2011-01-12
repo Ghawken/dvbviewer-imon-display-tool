@@ -398,6 +398,44 @@ namespace DVBViewer_iMonDisplayPlugin
         {
             SettingsDialog sd = new SettingsDialog();
             sd.ShowDialog();
+        }
+
+        private void FormMain_Resize(object sender, EventArgs e)
+        {
+            if (FormWindowState.Minimized == WindowState)
+                Hide();
+        }
+
+        private void notifyIcon_DoubleClick(object sender, EventArgs e)
+        {
+            Show();
+            WindowState = FormWindowState.Normal;
+        }
+
+        private void contextMenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            if (e.ClickedItem.Text == "Restore")
+            {
+                this.Show();
+                WindowState = FormWindowState.Normal;
+            }
+            else if (e.ClickedItem.Text == "Close Application")
+            {
+                this.Close();
+            }
+            else if (e.ClickedItem.Text == "Toggle File Logging")
+            {
+                if (Properties.Settings.Default.logToFile)
+                {
+                    Properties.Settings.Default.logToFile = false;
+                }
+                else
+                {
+                    Properties.Settings.Default.logToFile = true;
+                }
+            }
+            
+            Logging.Log("Context Menu", e.ClickedItem.Text + " Clicked");
         }   
     }
 }
