@@ -28,12 +28,10 @@ namespace DVBViewer_iMonDisplayPlugin
             {
                 this.dvbv = (DVBViewer)System.Runtime.InteropServices.Marshal.GetActiveObject("DVBViewerServer.DVBViewer");
                 //Register EventHandler for ChannelChange action
-                this.dvbv.Events.OnChannelChange += new IDVBViewerEvents_OnChannelChangeEventHandler(dvbv_ChannelChange);                
-                //createLog("Successfully connected to DVBViewer COM-Interface");               
+                this.dvbv.Events.OnChannelChange += new IDVBViewerEvents_OnChannelChangeEventHandler(dvbv_ChannelChange);                                                
             }
             catch (Exception)
-            {
-                //createLog("Failed to connect to the DVBViewer COM-Interface");
+            {                
                 return false;
             }
 
@@ -61,7 +59,7 @@ namespace DVBViewer_iMonDisplayPlugin
              */
 
             try
-            {
+            {                
                 ht.Add("activeChannel", this.dvbv.OSD.ChannelName);
                 ht.Add("title", this.dvbv.EPGManager.EPGNow.Title);
                 ht.Add("percentage", Convert.ToInt32(this.dvbv.propGetValue("#TV.Now.percentage")));
