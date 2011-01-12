@@ -125,9 +125,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="iMonAPISharp0.1.0.6\iMONDisplay.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="iMonAPISharp0.1.0.6\iMONDisplay.dll" />
     <Content Include="iMonAPISharp0.1.0.6\iMonDisplayApiSharp.dll" />
     <Content Include="iMonAPISharp0.1.0.6\iMonDisplayApiSharp.xml">
       <SubType>Designer</SubType>
@@ -135,6 +133,9 @@
     <Content Include="iMonAPISharp0.1.0.6\iMonDisplayApiWrapperSharp.dll" />
     <Content Include="iMonAPISharp0.1.0.6\iMonDisplayApiWrapperSharp.xml">
       <SubType>Designer</SubType>
+    </Content>
+    <Content Include="iMONDisplay.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup />
