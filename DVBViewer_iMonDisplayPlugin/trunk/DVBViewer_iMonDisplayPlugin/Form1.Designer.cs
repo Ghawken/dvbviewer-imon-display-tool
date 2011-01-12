@@ -44,19 +44,22 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.dateiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.settingsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.checkBoxLogActive = new System.Windows.Forms.CheckBox();
             this.pictureBoxDvbvConnected = new System.Windows.Forms.PictureBox();
             this.pictureBoxiMonConnected = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBoxConnectionState = new System.Windows.Forms.GroupBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.statusStripMainForm.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDvbvConnected)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxiMonConnected)).BeginInit();
             this.groupBoxConnectionState.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // listBoxLog
@@ -90,7 +93,7 @@
             // button1
             // 
             this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(12, 27);
+            this.button1.Location = new System.Drawing.Point(314, 120);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 3;
@@ -101,7 +104,7 @@
             // button2
             // 
             this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(93, 27);
+            this.button2.Location = new System.Drawing.Point(314, 144);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 4;
@@ -158,12 +161,12 @@
             this.labelDisplayType.Size = new System.Drawing.Size(51, 13);
             this.labelDisplayType.TabIndex = 9;
             this.labelDisplayType.Text = "unknown";
-            this.labelDisplayType.Click += new System.EventHandler(this.labelDisplayType_Click);
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.dateiToolStripMenuItem,
+            this.settingsToolStripMenuItem,
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -186,6 +189,21 @@
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.settingsToolStripMenuItem1});
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
+            this.settingsToolStripMenuItem.Text = "Extras";
+            // 
+            // settingsToolStripMenuItem1
+            // 
+            this.settingsToolStripMenuItem1.Name = "settingsToolStripMenuItem1";
+            this.settingsToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.settingsToolStripMenuItem1.Text = "Settings";
+            this.settingsToolStripMenuItem1.Click += new System.EventHandler(this.settingsToolStripMenuItem1_Click);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -200,18 +218,6 @@
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
-            // 
-            // checkBoxLogActive
-            // 
-            this.checkBoxLogActive.AutoSize = true;
-            this.checkBoxLogActive.Checked = true;
-            this.checkBoxLogActive.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxLogActive.Location = new System.Drawing.Point(428, 121);
-            this.checkBoxLogActive.Name = "checkBoxLogActive";
-            this.checkBoxLogActive.Size = new System.Drawing.Size(44, 17);
-            this.checkBoxLogActive.TabIndex = 11;
-            this.checkBoxLogActive.Text = "Log";
-            this.checkBoxLogActive.UseVisualStyleBackColor = true;
             // 
             // pictureBoxDvbvConnected
             // 
@@ -262,13 +268,25 @@
             this.groupBoxConnectionState.TabStop = false;
             this.groupBoxConnectionState.Text = "Connection state";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::DVBViewer_iMonDisplayPlugin.Resource1.dvbvLogo;
+            this.pictureBox1.InitialImage = global::DVBViewer_iMonDisplayPlugin.Resource1.dvbvLogo;
+            this.pictureBox1.Location = new System.Drawing.Point(12, 27);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(180, 88);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 17;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.WaitOnLoad = true;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 345);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.groupBoxConnectionState);
-            this.Controls.Add(this.checkBoxLogActive);
             this.Controls.Add(this.labelDisplayType);
             this.Controls.Add(this.labelActiveChannel);
             this.Controls.Add(this.labelActiveChannel_);
@@ -281,7 +299,7 @@
             this.Controls.Add(this.listBoxLog);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormMain";
-            this.Text = "DVBViewer iMon Display Plugin" + " v" + this.ProductVersion;
+            this.Text = "DVBViewer iMon Display Plugin v" + this.ProductVersion;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.statusStripMainForm.ResumeLayout(false);
             this.statusStripMainForm.PerformLayout();
@@ -291,6 +309,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxiMonConnected)).EndInit();
             this.groupBoxConnectionState.ResumeLayout(false);
             this.groupBoxConnectionState.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -314,13 +333,15 @@
         private System.Windows.Forms.ToolStripMenuItem dateiToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
-        private System.Windows.Forms.CheckBox checkBoxLogActive;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.PictureBox pictureBoxDvbvConnected;
         private System.Windows.Forms.PictureBox pictureBoxiMonConnected;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBoxConnectionState;
+        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

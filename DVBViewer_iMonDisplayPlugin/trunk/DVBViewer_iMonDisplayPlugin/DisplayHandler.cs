@@ -62,7 +62,7 @@ namespace DVBViewer_iMonDisplayPlugin
             {                
                 this.semReady.WaitOne();
 
-                //TODO: Logging
+                Logging.Log("Display Handler", "Start working");
 
                 if (this.lcd)
                 {
@@ -102,10 +102,11 @@ namespace DVBViewer_iMonDisplayPlugin
                     }
                 }
 
-                //TODO: Logging
+                Logging.Log("Display Handler", "Stop working");
             }
 
-            //TODO: Logging
+            Logging.Log("Display Handler", "Cancelled");
+
             this.imon.LCD.ScrollFinished -= lcdScrollFinished;
         }
 
@@ -128,7 +129,8 @@ namespace DVBViewer_iMonDisplayPlugin
         {
             lock (this.queueLock)
             {
-                //TODO: Logging
+                Logging.Log("Display Handler", "Setting text to \"" + lcd + "\"");
+
                 this.queue.Clear();
                 this.queue.Add(new Text(lcd, vfdUpper, vfdLower, delay));
                 this.position = 0;
@@ -156,7 +158,7 @@ namespace DVBViewer_iMonDisplayPlugin
         {
             lock (this.queueLock)
             {
-                // TODO Logging.Log("Display Handler", "Adding text \"" + lcd + "\" to the queue");
+                Logging.Log("Display Handler", "Adding text \"" + lcd + "\" to the queue");
 
                 this.queue.Add(new Text(lcd, vfdUpper, vfdLower, delay));               
 
@@ -189,7 +191,7 @@ namespace DVBViewer_iMonDisplayPlugin
 
             if (this.lcd)
             {
-                //TODO: Logging.Log("Display Handler", "Setting LCD icon " + icon + " to " + show);
+                Logging.Log("Display Handler", "Setting LCD icon " + icon + " to " + show);
 
                 this.imon.LCD.Icons.Set(icon, show);                
             }
@@ -201,7 +203,7 @@ namespace DVBViewer_iMonDisplayPlugin
             {
                 if (this.lcd)
                 {
-                    // TODO: Logging.Log("Display Handler", "Setting LCD icon " + icon + " to " + show);
+                    Logging.Log("Display Handler", "Setting LCD icon " + icon + " to " + show);
                 }
 
                 this.icons[icon] = show;
@@ -222,7 +224,7 @@ namespace DVBViewer_iMonDisplayPlugin
 
             if (this.lcd)
             {
-                //TODO: Logging.Log("Display Handler", "Hiding all LCD icons");
+                Logging.Log("Display Handler", "Hiding all LCD icons");
 
                 this.imon.LCD.Icons.HideAll();
             }
@@ -321,7 +323,7 @@ namespace DVBViewer_iMonDisplayPlugin
         {
             Thread.Sleep(/*Settings.Default.ImonLcdScrollingDelay*/1000); //TODO: Manuell einstellbar machen!?
 
-            //TODO: Logging.Log("Display Handler", "Scrolling finished");
+            Logging.Log("Display Handler", "Scrolling finished");
 
             lock (this.queueLock)
             {
@@ -368,20 +370,20 @@ namespace DVBViewer_iMonDisplayPlugin
             {
                 if (this.lcd)
                 {
-                    //TODO: Logging.Log("Display Handler", "LCD.SetText: " + text.Lcd);
+                    Logging.Log("Display Handler", "LCD.SetText: " + text.Lcd);
 
                     this.imon.LCD.SetText(text.Lcd.Substring(0, text.Lcd.Length < 256 ? text.Lcd.Length : 257));
                 }
                 if (this.vfd)
                 {
-                    //TODO: Logging.Log("Display Handler", "VFD.SetText: " + text.VfdUpper + "; " + text.VfdLower);
+                    Logging.Log("Display Handler", "VFD.SetText: " + text.VfdUpper + "; " + text.VfdLower);
 
                     this.imon.VFD.SetText(text.VfdUpper, text.VfdLower);
                 }
 
                 if (text.Delay > 0)
                 {
-                    //TODO: Logging.Log("Display Handler", "Showing text for " + text.Delay + "ms");
+                    Logging.Log("Display Handler", "Showing text for " + text.Delay + "ms");
 
                     Thread.Sleep(text.Delay);
                 }

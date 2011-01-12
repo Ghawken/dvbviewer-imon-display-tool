@@ -16,11 +16,9 @@ namespace DVBViewer_iMonDisplayPlugin
         private bool dvbvComInterfaceActive = false;
         private bool iMonDisplayInterfaceActive = false;
         private bool updateTimerWorking = false;
-        private DVBViewerComCalls dvbvComCalls;
-        private string currentDisplayText = "";
+        private DVBViewerComCalls dvbvComCalls;        
         private bool lcd = false;
-        private bool vfd = false;
-        private bool scrollFinished = false; //flag for scrollFinished event
+        private bool vfd = false;        
 
         private DisplayHandler displayHandler;
         private DataHandler dataHandler;
@@ -62,7 +60,7 @@ namespace DVBViewer_iMonDisplayPlugin
 
             this.dataHandler = new DataHandler(this.displayHandler);
 
-            this.imon.Initialize();
+            this.imon.Initialize();            
         }
 
         /// <summary>
@@ -105,8 +103,7 @@ namespace DVBViewer_iMonDisplayPlugin
             {                
                 this.lcd = false;
                 this.vfd = false;
-                labelDisplayType.Text = "Unknown";
-                currentDisplayText = "";
+                labelDisplayType.Text = "Unknown";                
 
                 iMonDisplayInterfaceActive = false;
                 // now the display is uninitialized and you can't use it anymore
@@ -353,10 +350,11 @@ namespace DVBViewer_iMonDisplayPlugin
         /// <param name="message">Log Message</param>
         private void createLog(String message)
         {
-            if (!checkBoxLogActive.Checked)
+            if (!Properties.Settings.Default.logToWindow)
                 return;
 
-            String time = DateTime.Now.Hour.ToString() + ':' + DateTime.Now.Minute.ToString() + ':' + DateTime.Now.Second.ToString();
+            Logging.Log(message);
+            String time = DateTime.Now.ToString();
             listBoxLog.Items.Add(time + "   " + message);
             listBoxLog.SelectedIndex = listBoxLog.Items.Count - 1;
         }
@@ -394,11 +392,12 @@ namespace DVBViewer_iMonDisplayPlugin
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
+        }    
 
-        private void labelDisplayType_Click(object sender, EventArgs e)
+        private void settingsToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-
-        }
+            SettingsDialog sd = new SettingsDialog();
+            sd.ShowDialog();
+        }   
     }
 }
