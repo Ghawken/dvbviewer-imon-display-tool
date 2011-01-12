@@ -61,7 +61,7 @@ namespace DVBViewer_iMonDisplayPlugin
             try
             {                
                 ht.Add("activeChannel", this.dvbv.OSD.ChannelName);
-                ht.Add("title", this.dvbv.EPGManager.EPGNow.Title);
+                ht.Add("title", this.dvbv.EPGManager.EPGNow.Title);                
                 ht.Add("percentage", Convert.ToInt32(this.dvbv.propGetValue("#TV.Now.percentage")));
                 ht.Add("volume", this.dvbv.Volume);            
             }
