@@ -22,5 +22,29 @@ namespace DVBViewer_iMonDisplayPlugin.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool logToFile {
+            get {
+                return ((bool)(this["logToFile"]));
+            }
+            set {
+                this["logToFile"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool logToWindow {
+            get {
+                return ((bool)(this["logToWindow"]));
+            }
+            set {
+                this["logToWindow"] = value;
+            }
+        }
     }
 }
