@@ -70,7 +70,8 @@
             // 
             // buttonClose
             // 
-            this.buttonClose.Location = new System.Drawing.Point(178, 407);
+            this.buttonClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.buttonClose.Location = new System.Drawing.Point(12, 137);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(75, 23);
             this.buttonClose.TabIndex = 2;
@@ -84,12 +85,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.buttonClose;
-            this.ClientSize = new System.Drawing.Size(624, 442);
+            this.ClientSize = new System.Drawing.Size(394, 172);
             this.Controls.Add(this.buttonClose);
             this.Controls.Add(this.groupBoxLogging);
-            this.MinimumSize = new System.Drawing.Size(640, 480);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "SettingsDialog";
-            this.Text = "SettingsDialog";
+            this.Text = "Settings";
             this.Load += new System.EventHandler(this.SettingsDialog_Load);
             this.groupBoxLogging.ResumeLayout(false);
             this.groupBoxLogging.PerformLayout();
