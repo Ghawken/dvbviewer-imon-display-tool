@@ -37,6 +37,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="iMonDisplayApiSharp, Version=0.1.0.1, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
@@ -144,6 +148,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="dvbv_imon.ico" />
     <Content Include="iMonAPISharp0.1.0.6\iMONDisplay.dll" />
     <Content Include="iMonAPISharp0.1.0.6\iMonDisplayApiSharp.dll" />
     <Content Include="iMonAPISharp0.1.0.6\iMonDisplayApiSharp.xml">
@@ -156,8 +161,8 @@
     <Content Include="iMONDisplay.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\Image1.jpg" />
     <None Include="Resources\dvbvLogo.png" />
-    <None Include="Resources\Image1.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

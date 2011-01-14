@@ -274,9 +274,10 @@
             // 
             this.notifyIcon.ContextMenuStrip = this.contextMenuStrip;
             this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
-            this.notifyIcon.Text = "DVBViewer iMon Display Plugin";
+            this.notifyIcon.Text = "DVBViewer iMon Display Tool";
             this.notifyIcon.Visible = true;
             this.notifyIcon.DoubleClick += new System.EventHandler(this.notifyIcon_DoubleClick);
+            this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
             // 
             // contextMenuStrip
             // 
@@ -286,7 +287,7 @@
             this.toolStripSeparator1,
             this.toolStripMenuItem3});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(180, 98);
+            this.contextMenuStrip.Size = new System.Drawing.Size(180, 76);
             this.contextMenuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuStrip_ItemClicked);
             // 
             // toolStripMenuItem1
@@ -329,6 +330,7 @@
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.listBoxLog);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormMain";
             this.Text = "DVBViewer iMon Display Plugin";

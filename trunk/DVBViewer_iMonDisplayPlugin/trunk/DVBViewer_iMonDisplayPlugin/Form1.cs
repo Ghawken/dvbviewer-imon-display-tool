@@ -436,6 +436,11 @@ namespace DVBViewer_iMonDisplayPlugin
             }
             
             Logging.Log("Context Menu", e.ClickedItem.Text + " Clicked");
+        }
+
+        private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+
         }   
     }
 }
