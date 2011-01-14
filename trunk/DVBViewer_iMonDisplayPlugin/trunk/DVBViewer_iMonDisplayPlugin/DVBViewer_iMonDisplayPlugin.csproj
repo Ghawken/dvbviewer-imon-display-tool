@@ -38,8 +38,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>dvbv_imon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="iMonDisplayApiSharp, Version=0.1.0.1, Culture=neutral, processorArchitecture=x86">
@@ -161,7 +160,6 @@
     <Content Include="iMONDisplay.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Resources\Image1.jpg" />
     <None Include="Resources\dvbvLogo.png" />
   </ItemGroup>
   <ItemGroup />
