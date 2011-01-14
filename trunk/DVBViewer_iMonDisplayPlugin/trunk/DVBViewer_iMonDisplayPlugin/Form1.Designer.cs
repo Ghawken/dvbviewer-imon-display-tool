@@ -59,6 +59,7 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.labelVersion = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDvbvConnected)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxiMonConnected)).BeginInit();
@@ -313,11 +314,21 @@
             this.toolStripMenuItem3.Size = new System.Drawing.Size(179, 22);
             this.toolStripMenuItem3.Text = "Toggle File Logging";
             // 
+            // labelVersion
+            // 
+            this.labelVersion.AutoSize = true;
+            this.labelVersion.Location = new System.Drawing.Point(397, 120);
+            this.labelVersion.Name = "labelVersion";
+            this.labelVersion.Size = new System.Drawing.Size(64, 13);
+            this.labelVersion.TabIndex = 18;
+            this.labelVersion.Text = "labelVersion";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 345);
+            this.Controls.Add(this.labelVersion);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.groupBoxConnectionState);
             this.Controls.Add(this.labelDisplayType);
@@ -380,6 +391,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.Label labelVersion;
     }
 }
 

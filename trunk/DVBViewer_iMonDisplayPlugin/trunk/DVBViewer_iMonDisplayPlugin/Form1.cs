@@ -30,6 +30,8 @@ namespace DVBViewer_iMonDisplayPlugin
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            labelVersion.Text = "v" + this.ProductVersion;
+
             dvbvComCalls = new DVBViewerComCalls();
             //Setup connect timer                      
             timerConnect.Interval = 1000;
