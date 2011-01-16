@@ -46,5 +46,17 @@ namespace DVBViewer_iMonDisplayPlugin.Properties {
                 this["logToWindow"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int scrollDelay {
+            get {
+                return ((int)(this["scrollDelay"]));
+            }
+            set {
+                this["scrollDelay"] = value;
+            }
+        }
     }
 }

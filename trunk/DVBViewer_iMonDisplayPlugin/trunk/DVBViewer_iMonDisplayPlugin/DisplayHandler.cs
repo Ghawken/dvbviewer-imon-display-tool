@@ -46,7 +46,7 @@ namespace DVBViewer_iMonDisplayPlugin
 
             this.discRotation = new System.Timers.Timer();
             this.discRotation.AutoReset = true;
-            this.discRotation.Interval = 300;
+            this.discRotation.Interval = 1000;
             this.discRotation.Elapsed += discRotationElapsed;
 
             this.WorkerReportsProgress = false;
@@ -171,7 +171,7 @@ namespace DVBViewer_iMonDisplayPlugin
 
         public void SetProgress(int position, int total)
         {
-            if (this.lcd && this.position >= 0)
+            if (this.lcd && position >= 0)
             {
                 this.imon.LCD.SetProgress(position, total);
             }
@@ -321,7 +321,8 @@ namespace DVBViewer_iMonDisplayPlugin
 
         private void lcdScrollFinished(object sender, EventArgs e)
         {
-            Thread.Sleep(/*Settings.Default.ImonLcdScrollingDelay*/1000); //TODO: Manuell einstellbar machen!?
+            //ToDo: App window freezes if this Thread-sleep occurs
+            Thread.Sleep(Properties.Settings.Default.scrollDelay * 1000);
 
             Logging.Log("Display Handler", "Scrolling finished");
 
@@ -388,6 +389,19 @@ namespace DVBViewer_iMonDisplayPlugin
                     Thread.Sleep(text.Delay);
                 }
             }
+        }
+
+        public void ShowStereoAudioIcons(bool show)
+        {
+            List<iMonLcdIcons> stereoIconList = new List<iMonLcdIcons>() { iMonLcdIcons.SpeakerFrontLeft , iMonLcdIcons.SpeakerFrontRight };
+            this.SetIcons(stereoIconList, show);
+        }
+
+        public void Show_DD51_AudioIcons(bool show)
+        {
+            List<iMonLcdIcons> stereoIconList = new List<iMonLcdIcons>() { iMonLcdIcons.SpeakerFrontLeft , iMonLcdIcons.SpeakerFrontRight , iMonLcdIcons.SpeakerCenter,
+                                                                           iMonLcdIcons.SpeakerRearLeft , iMonLcdIcons.SpeakerRearRight , iMonLcdIcons.SpeakerCenter };
+            this.SetIcons(stereoIconList, show);
         }
     }
 }

@@ -45,6 +45,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.linkLabel3 = new System.Windows.Forms.LinkLabel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.linkLabel4 = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // bClose
@@ -221,6 +223,30 @@
             this.linkLabel3.Text = "http://sourceforge.net/projects/xbmc-on-imon/";
             this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.openLink);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(12, 72);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(98, 13);
+            this.label7.TabIndex = 21;
+            this.label7.Text = "Project Homepage:";
+            // 
+            // linkLabel4
+            // 
+            this.linkLabel4.ActiveLinkColor = System.Drawing.Color.Blue;
+            this.linkLabel4.AutoSize = true;
+            this.linkLabel4.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
+            this.linkLabel4.LinkColor = System.Drawing.Color.Blue;
+            this.linkLabel4.Location = new System.Drawing.Point(116, 72);
+            this.linkLabel4.Name = "linkLabel4";
+            this.linkLabel4.Size = new System.Drawing.Size(275, 13);
+            this.linkLabel4.TabIndex = 22;
+            this.linkLabel4.TabStop = true;
+            this.linkLabel4.Text = "https://code.google.com/p/dvbviewer-imon-display-tool/";
+            this.linkLabel4.VisitedLinkColor = System.Drawing.Color.Blue;
+            this.linkLabel4.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.openLink);
+            // 
             // AboutDialog
             // 
             this.AcceptButton = this.bClose;
@@ -228,6 +254,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.bClose;
             this.ClientSize = new System.Drawing.Size(400, 494);
+            this.Controls.Add(this.linkLabel4);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.linkLabel3);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
@@ -274,5 +302,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.LinkLabel linkLabel3;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.LinkLabel linkLabel4;
     }
 }

@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Collections;
 using DVBViewerServer;
+using System.Runtime.InteropServices;
 
 namespace DVBViewer_iMonDisplayPlugin
 {
@@ -28,7 +26,7 @@ namespace DVBViewer_iMonDisplayPlugin
             {
                 this.dvbv = (DVBViewer)System.Runtime.InteropServices.Marshal.GetActiveObject("DVBViewerServer.DVBViewer");
                 //Register EventHandler for ChannelChange action
-                this.dvbv.Events.OnChannelChange += new IDVBViewerEvents_OnChannelChangeEventHandler(dvbv_ChannelChange);                                                
+                //this.dvbv.Events.OnChannelChange += new IDVBViewerEvents_OnChannelChangeEventHandler(dvbv_ChannelChange);                                                
             }
             catch (Exception)
             {                
@@ -41,36 +39,96 @@ namespace DVBViewer_iMonDisplayPlugin
         private void dvbv_ChannelChange(int ChannelNr)
         {
             /* do nothing --> Event Seems not to be fired every time a channel is changed */
+            /* ToDo: Check it! */
         }
 
         /// <summary>
         /// Gathers display-relevant information from DVBViewer COM interface
         /// </summary>
         /// <returns>returns the Hashtable with the values, null if error</returns>
-        public Hashtable gatherInformationFromDVBViewer()
+        public Hashtable getInformationFromDVBViewer()
         {
-            ht = new Hashtable();
-
-            /*
-            string activeChannel;
-            string title;
-            int percentage;
-            double volume;
-             */
+            this.ht = new Hashtable();
+            ht.Add("missingFieldFlag", false);
+            ht.Add("comErrorFlag", false);            
 
             try
-            {                
+            {
                 ht.Add("activeChannel", this.dvbv.OSD.ChannelName);
-                ht.Add("title", this.dvbv.EPGManager.EPGNow.Title);                
-                ht.Add("percentage", Convert.ToInt32(this.dvbv.propGetValue("#TV.Now.percentage")));
-                ht.Add("volume", this.dvbv.Volume);            
+            }
+            catch (COMException)
+            {
+                ht["comErrorFlag"] = true;
             }
             catch (Exception)
             {
-                return null;
+                ht["missingFieldFlag"] = true;
             }
 
+            try
+            {
+                ht.Add("title", this.dvbv.EPGManager.EPGNow.Title);
+            }
+            catch (COMException)
+            {
+                ht["comErrorFlag"] = true;
+            }
+            catch (Exception)
+            {
+                ht["missingFieldFlag"] = true;
+            }
+
+            try
+            {
+                ht.Add("isRecording", this.dvbv.TimerManager.Recording);
+            }
+            catch (COMException)
+            {
+                ht["comErrorFlag"] = true;
+            }
+            catch (Exception)
+            {
+                ht["missingFieldFlag"] = true;
+            }
+
+            try
+            {
+                ht.Add("progress", Convert.ToInt32(this.dvbv.propGetValue("#TV.Now.percentage")));
+            }
+            catch (COMException)
+            {
+                ht["comErrorFlag"] = true;
+            }
+            catch (Exception)
+            {
+                ht["missingFieldFlag"] = true;
+            }
+
+            try
+            {
+                ht.Add("audioMode",this.dvbv.Audiomode());
+            }
+            catch (COMException)
+            {
+                ht["comErrorFlag"] = true;
+            }
+            catch (Exception)
+            {
+                ht["missingFieldFlag"] = true;
+            }
             
+            try
+            {
+                ht.Add("volume", this.dvbv.Volume);
+            }
+            catch (COMException)
+            {
+                ht["comErrorFlag"] = true;
+            }
+            catch (Exception)
+            {
+                ht["missingFieldFlag"] = true;
+            }          
 
             return ht;
         }

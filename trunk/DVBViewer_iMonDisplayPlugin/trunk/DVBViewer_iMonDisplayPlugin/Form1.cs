@@ -259,92 +259,33 @@ namespace DVBViewer_iMonDisplayPlugin
             if (updateTimerWorking)
                 return;            
 
-            //leave if COM interface is not active
+            //leave if COM interface or display interface is inactive
             if (!dvbvComInterfaceActive || !iMonDisplayInterfaceActive)
                 return;
 
             updateTimerWorking = true;
 
-            Hashtable dvbViewerDataHt = dvbvComCalls.gatherInformationFromDVBViewer();
+            Hashtable dvbViewerDataHt = dvbvComCalls.getInformationFromDVBViewer();
 
-            if (dvbViewerDataHt == null)
-            {
+            dataHandler.handleDvbViewerData(dvbViewerDataHt);
+
+            if ((bool)dvbViewerDataHt["comErrorFlag"])
+            {                
                 //There was an error somewhere in DVBViewer Com Calls
                 //Set flags to false and return
                 dvbvComInterfaceActive = false;
                 updateTimerWorking = false;
                 return;
             }
-
-            labelActiveChannel.Text = dvbViewerDataHt["activeChannel"].ToString();
-
-            dataHandler.handleDvbViewerData(dvbViewerDataHt);
-
-            //displayHandler.AddText(ht["activeChannel"].ToString());
-            //displayHandler.AddText(ht["title"].ToString());
-            //displayHandler.SetProgress((int)ht["percentage"], 100);
-
+                        
+            /* DEBUG labelActiveChannel.Text = dvbViewerDataHt["activeChannel"].ToString(); */ 
+           
             //Limit LogBox Length to 100
             if (listBoxLog.Items.Count >= 100)
                 listBoxLog.Items.RemoveAt(0);
 
             updateTimerWorking = false;
-        }
-
-        
-        /*
-        private void showTextOnImonDisplay(string textToShow)
-        {
-            if ((currentDisplayText == textToShow) && (scrollFinished == false))
-                return;
-
-            if (iMonDisplayInterfaceActive)
-            {
-                if (lcd)
-                {
-                    imon.LCD.SetText(labelActiveChannel.Text);                    
-                    scrollFinished = false;
-                }
-                if (vfd)
-                {
-                    //TODO: VFD ordentlich einbinden
-                    imon.VFD.SetText(textToShow, "");
-                }
-
-                currentDisplayText = textToShow;
-            }            
-        }
-         * */
-
-        /*
-        /// <summary>
-        /// This function shows or hides all Icons on LCD displays
-        /// </summary>
-        /// <param name="showAllIcons">if true, all icons are shown - if false, all icons are hided</param>
-        private void showAllIconsOniMonDisplay(bool showAllIcons)
-        {
-            //Only if API is active
-            if (iMonDisplayInterfaceActive)
-            {
-                //Only handle if DisplayType is LCD because other Display (VFD) does currently not support icons
-                if (imon.DisplayType == iMonDisplayType.LCD)
-                {
-                    if (showAllIcons)
-                    {
-                        imon.LCD.Icons.ShowAll();
-                    }
-                    else
-                    {
-                        imon.LCD.Icons.HideAll();
-                    }
-                }
-                else
-                {
-                    createLog("This Display does not support to show Icons");
-                }
-            }
-        }
-         * */
+        }          
 
         /// <summary>
         /// Creates log-entry with time and adds it to the listBoxLog.
