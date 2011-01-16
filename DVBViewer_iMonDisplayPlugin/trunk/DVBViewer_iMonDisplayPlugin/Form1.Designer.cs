@@ -344,7 +344,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormMain";
-            this.Text = "DVBViewer iMon Display Plugin";
+            this.Text = "DVBViewer iMon Display Tool";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Resize += new System.EventHandler(this.FormMain_Resize);
             this.menuStrip1.ResumeLayout(false);

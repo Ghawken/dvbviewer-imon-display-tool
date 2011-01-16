@@ -32,7 +32,11 @@
             this.groupBoxLogging = new System.Windows.Forms.GroupBox();
             this.checkBoxLogToWindow = new System.Windows.Forms.CheckBox();
             this.buttonClose = new System.Windows.Forms.Button();
+            this.groupBoxDisplayOptions = new System.Windows.Forms.GroupBox();
+            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.labelScrollDelay = new System.Windows.Forms.Label();
             this.groupBoxLogging.SuspendLayout();
+            this.groupBoxDisplayOptions.SuspendLayout();
             this.SuspendLayout();
             // 
             // checkBoxLogtoFile
@@ -79,6 +83,37 @@
             this.buttonClose.UseVisualStyleBackColor = true;
             this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
             // 
+            // groupBoxDisplayOptions
+            // 
+            this.groupBoxDisplayOptions.Controls.Add(this.labelScrollDelay);
+            this.groupBoxDisplayOptions.Controls.Add(this.maskedTextBox1);
+            this.groupBoxDisplayOptions.Location = new System.Drawing.Point(12, 88);
+            this.groupBoxDisplayOptions.Name = "groupBoxDisplayOptions";
+            this.groupBoxDisplayOptions.Size = new System.Drawing.Size(317, 43);
+            this.groupBoxDisplayOptions.TabIndex = 3;
+            this.groupBoxDisplayOptions.TabStop = false;
+            this.groupBoxDisplayOptions.Text = "Display";
+            // 
+            // maskedTextBox1
+            // 
+            this.maskedTextBox1.Enabled = false;
+            this.maskedTextBox1.Location = new System.Drawing.Point(114, 17);
+            this.maskedTextBox1.Mask = "00";
+            this.maskedTextBox1.Name = "maskedTextBox1";
+            this.maskedTextBox1.Size = new System.Drawing.Size(22, 20);
+            this.maskedTextBox1.TabIndex = 0;
+            this.maskedTextBox1.TextChanged += new System.EventHandler(this.maskedTextBox1_TextChanged);
+            // 
+            // labelScrollDelay
+            // 
+            this.labelScrollDelay.AutoSize = true;
+            this.labelScrollDelay.Enabled = false;
+            this.labelScrollDelay.Location = new System.Drawing.Point(7, 20);
+            this.labelScrollDelay.Name = "labelScrollDelay";
+            this.labelScrollDelay.Size = new System.Drawing.Size(101, 13);
+            this.labelScrollDelay.TabIndex = 1;
+            this.labelScrollDelay.Text = "Scroll delay (in sec):";
+            // 
             // SettingsDialog
             // 
             this.AcceptButton = this.buttonClose;
@@ -86,6 +121,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.buttonClose;
             this.ClientSize = new System.Drawing.Size(394, 172);
+            this.Controls.Add(this.groupBoxDisplayOptions);
             this.Controls.Add(this.buttonClose);
             this.Controls.Add(this.groupBoxLogging);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -94,6 +130,8 @@
             this.Load += new System.EventHandler(this.SettingsDialog_Load);
             this.groupBoxLogging.ResumeLayout(false);
             this.groupBoxLogging.PerformLayout();
+            this.groupBoxDisplayOptions.ResumeLayout(false);
+            this.groupBoxDisplayOptions.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -104,5 +142,8 @@
         private System.Windows.Forms.GroupBox groupBoxLogging;
         private System.Windows.Forms.CheckBox checkBoxLogToWindow;
         private System.Windows.Forms.Button buttonClose;
+        private System.Windows.Forms.GroupBox groupBoxDisplayOptions;
+        private System.Windows.Forms.Label labelScrollDelay;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
     }
 }
