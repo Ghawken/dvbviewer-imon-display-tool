@@ -12,8 +12,7 @@ namespace DVBViewer_iMonDisplayPlugin
 
         public DVBViewerComCalls()
         {
-            //DVBViewerEvents de = dvbv.Events;
-            //de.
+            //DVBViewerEvents de = dvbv.Events;            
         }
 
         /// <summary>
