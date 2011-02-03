@@ -39,6 +39,7 @@ namespace DVBViewer_iMonDisplayPlugin
             string activeChannel = String.Empty;
             string title = String.Empty;
             int progress = 0;
+            int percentage = 0;
             bool isRecording = false;
             
             foreach (DictionaryEntry o in iHt)
@@ -59,6 +60,10 @@ namespace DVBViewer_iMonDisplayPlugin
                     else if (o.Key.ToString() == "progress")
                     {
                         progress = (int)o.Value;                        
+                    }
+                    else if (o.Key.ToString() == "percentage")
+                    {
+                        percentage = (int)o.Value;
                     }
                     else if (o.Key.ToString() == "isRecording")
                     {                        
@@ -110,7 +115,7 @@ namespace DVBViewer_iMonDisplayPlugin
                                     break;
                             }
                         }
-                    }
+                    }                    
                 }
                 catch (Exception)
                 {
@@ -127,10 +132,18 @@ namespace DVBViewer_iMonDisplayPlugin
                 displayString += " - " + title;
                 Logging.Log("Data Handler", "Title changed to: " + title);
             }
-            if (progress >= 0)
+
+            //if Tv is running it seems that percentage always return 100 !?
+            if (progress >= 0 && percentage == 100)
             {
                 displayHandler.SetProgress(progress, 100);
                 Logging.Log("Data Handler", "Progress changed to: " + progress.ToString());
+            }
+            //if media is playing progress seems to return always 0 or -1 !?
+            else if ((progress == 0 || progress == -1) && percentage >= 0)
+            {
+                displayHandler.SetProgress(percentage, 100);
+                Logging.Log("Data Handler", "Progress changed to: " + percentage.ToString());
             }
             else
             {
@@ -139,8 +152,8 @@ namespace DVBViewer_iMonDisplayPlugin
 
 
             if (displayString != lastDisplayString)
-            {
-                displayHandler.SetText(displayString);
+            {                
+                displayHandler.SetText(displayString, activeChannel, title);
             }
 
             /*

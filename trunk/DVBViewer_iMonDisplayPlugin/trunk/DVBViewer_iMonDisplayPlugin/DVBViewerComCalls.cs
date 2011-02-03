@@ -91,8 +91,10 @@ namespace DVBViewer_iMonDisplayPlugin
             }
 
             try
-            {
-                ht.Add("progress", Convert.ToInt32(this.dvbv.propGetValue("#TV.Now.percentage")));
+            {                
+                int progress = Convert.ToInt32(this.dvbv.propGetValue("#TV.Now.percentage"));
+                ht.Add("progress", Convert.ToInt32(progress));
+             
             }
             catch (COMException)
             {
@@ -127,7 +129,33 @@ namespace DVBViewer_iMonDisplayPlugin
             catch (Exception)
             {
                 ht["missingFieldFlag"] = true;
-            }          
+            }
+
+            try
+            {
+                ht.Add("percentage", Convert.ToInt32(this.dvbv.propGetValue("#percentage")));
+            }
+            catch (COMException)
+            {
+                ht["comErrorFlag"] = true;
+            }
+            catch (Exception)
+            {
+                ht["missingFieldFlag"] = true;
+            }
+
+            try
+            {
+                ht.Add("menuSelectedItem", this.dvbv.propGetValue("#selecteditem"));
+            }
+            catch (COMException)
+            {
+                ht["comErrorFlag"] = true;
+            }
+            catch (Exception)
+            {
+                ht["missingFieldFlag"] = true;
+            }
 
             return ht;
         }
