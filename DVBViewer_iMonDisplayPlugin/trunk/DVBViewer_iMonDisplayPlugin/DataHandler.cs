@@ -13,6 +13,8 @@ namespace DVBViewer_iMonDisplayPlugin
         string lastDisplayString = String.Empty;
         int lastAudioMode = 0;
         bool lastRecordingState = false;
+        int lastProgress = 0;
+        int lastPercentage = 0;
         //string lastActiveChannel = String.Empty;        
 
         public DataHandler(DisplayHandler iDisplayHandler)
@@ -22,6 +24,7 @@ namespace DVBViewer_iMonDisplayPlugin
 
         public void handleDvbViewerData(Hashtable iHt)
         {
+            //give lastResultTable a value @ first time this code is reached
             if (lastResultTable == null)
             {
                 lastResultTable = iHt;
@@ -40,36 +43,37 @@ namespace DVBViewer_iMonDisplayPlugin
             string title = String.Empty;
             int progress = 0;
             int percentage = 0;
-            bool isRecording = false;
+            //bool isRecording = false;
             
+            //Parse each element in input Hashtable
             foreach (DictionaryEntry o in iHt)
             {
                 try
                 {
                     if (o.Key.ToString() == "activeChannel")
-                    {                       
-                            //displayString += o.Value.ToString();                                                    
+                    {                                                   
                         activeChannel = o.Value.ToString();
                     }
                     else if (o.Key.ToString() == "title")
-                    {                        
-                            //displayString += " - ";
-                            //displayString += o.Value.ToString();
+                    {                                                   
                         title = o.Value.ToString();                        
                     }
+                    //it seems that progress is only used for TV in DVBViewer
                     else if (o.Key.ToString() == "progress")
                     {
+                        
                         progress = (int)o.Value;                        
                     }
+                    //it seems that percentage is only used for media files!?
                     else if (o.Key.ToString() == "percentage")
                     {
                         percentage = (int)o.Value;
                     }
                     else if (o.Key.ToString() == "isRecording")
-                    {                        
-                        displayHandler.SetIcon(iMon.DisplayApi.iMonLcdIcons.Recording, (bool)o.Value);
+                    {                                                
                         if ((bool)o.Value != lastRecordingState)
                         {
+                            displayHandler.SetIcon(iMon.DisplayApi.iMonLcdIcons.Recording, (bool)o.Value);
                             if ((bool)o.Value)
                             {
                                 displayHandler.RotateDisc(true);
@@ -125,35 +129,44 @@ namespace DVBViewer_iMonDisplayPlugin
             if (activeChannel != String.Empty)
             {
                 displayString += activeChannel;
-                Logging.Log("Data Handler", "Channel changed to: " + activeChannel);
+                //following log makes no sense here -> this routine is even used if channel not changed
+                //Logging.Log("Data Handler", "Channel changed to: " + activeChannel);
             }
             if (title != String.Empty)
             {
                 displayString += " - " + title;
-                Logging.Log("Data Handler", "Title changed to: " + title);
+                //same as above
+                //Logging.Log("Data Handler", "Title changed to: " + title);
             }
 
             //if Tv is running it seems that percentage always return 100 !?
             if (progress >= 0 && percentage == 100)
             {
-                displayHandler.SetProgress(progress, 100);
-                Logging.Log("Data Handler", "Progress changed to: " + progress.ToString());
+                if (progress != lastProgress)
+                {
+                    displayHandler.SetProgress(progress, 100);
+                    Logging.Log("Data Handler", "Progress changed to: " + progress.ToString());
+                }
             }
             //if media is playing progress seems to return always 0 or -1 !?
             else if ((progress == 0 || progress == -1) && percentage >= 0)
             {
-                displayHandler.SetProgress(percentage, 100);
-                Logging.Log("Data Handler", "Progress changed to: " + percentage.ToString());
+                if (percentage != lastPercentage)
+                {
+                    displayHandler.SetProgress(percentage, 100);
+                    Logging.Log("Data Handler", "Progress changed to: " + percentage.ToString());
+                }
             }
             else
             {
                 displayHandler.SetProgress(0, 100);
             }
-
+            
 
             if (displayString != lastDisplayString)
             {                
                 displayHandler.SetText(displayString, activeChannel, title);
+                Logging.Log("Data Handler", "Set Text: " + displayString);
             }
 
             /*
@@ -173,9 +186,10 @@ namespace DVBViewer_iMonDisplayPlugin
                 displayHandler.SetProgress((int)iHt["percentage"], 100);
             //}
             */
-
             
-            lastDisplayString = displayString;            
+            lastDisplayString = displayString;
+            lastPercentage = percentage;
+            lastProgress = progress;
             lastResultTable = iHt;            
         }
     }
