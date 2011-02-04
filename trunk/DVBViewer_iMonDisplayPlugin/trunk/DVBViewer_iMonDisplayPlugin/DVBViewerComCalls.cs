@@ -144,9 +144,51 @@ namespace DVBViewer_iMonDisplayPlugin
                 ht["missingFieldFlag"] = true;
             }
 
+            //TODO: Implement Menu on Display
+            /*
             try
             {
                 ht.Add("menuSelectedItem", this.dvbv.propGetValue("#selecteditem"));
+            }
+            catch (COMException)
+            {
+                ht["comErrorFlag"] = true;
+            }
+            catch (Exception)
+            {
+                ht["missingFieldFlag"] = true;
+            }
+             * */
+            try
+            {
+                ht.Add("isMediaPlayback", this.dvbv.isMediaplayback());
+            }
+            catch (COMException)
+            {
+                ht["comErrorFlag"] = true;
+            }
+            catch (Exception)
+            {
+                ht["missingFieldFlag"] = true;
+            }
+
+
+            try
+            {
+                ht.Add("mediaArtist", this.dvbv.propGetValue("#Media.Artist"));
+            }
+            catch (COMException)
+            {
+                ht["comErrorFlag"] = true;
+            }
+            catch (Exception)
+            {
+                ht["missingFieldFlag"] = true;
+            }
+
+            try
+            {
+                ht.Add("mediaTitle", this.dvbv.propGetValue("#Media.title"));
             }
             catch (COMException)
             {

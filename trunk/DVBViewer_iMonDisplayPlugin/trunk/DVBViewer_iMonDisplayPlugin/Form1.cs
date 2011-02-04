@@ -278,7 +278,7 @@ namespace DVBViewer_iMonDisplayPlugin
                 return;
             }
                         
-            /* DEBUG labelActiveChannel.Text = dvbViewerDataHt["activeChannel"].ToString(); */ 
+            labelActiveChannel.Text = dvbViewerDataHt["activeChannel"].ToString();
            
             //Limit LogBox Length to 100
             if (listBoxLog.Items.Count >= 100)
