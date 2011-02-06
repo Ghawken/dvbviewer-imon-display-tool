@@ -164,7 +164,12 @@ namespace DVBViewer_iMonDisplayPlugin
             
 
             if (displayString != lastDisplayString)
-            {                
+            {
+                //Remove German chars like ä ö ü ß because it seems, that VFD can´t handle this
+                //For LCD its not necessary because LCD renders text from system font
+                activeChannel = Helper.ReplaceGermanSpecialCharsForVFD(activeChannel);
+                title = Helper.ReplaceGermanSpecialCharsForVFD(title);
+
                 displayHandler.SetText(displayString, activeChannel, title);
                 Logging.Log("Data Handler", "Set Text: " + displayString);
             }

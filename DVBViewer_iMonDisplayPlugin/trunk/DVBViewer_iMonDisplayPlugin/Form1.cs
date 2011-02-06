@@ -275,10 +275,20 @@ namespace DVBViewer_iMonDisplayPlugin
                 //Set flags to false and return
                 dvbvComInterfaceActive = false;
                 updateTimerWorking = false;
+                createLog("Error in COM communication (error flag set)");
                 return;
             }
-                        
-            labelActiveChannel.Text = dvbViewerDataHt["activeChannel"].ToString();
+
+            try
+            {
+                labelActiveChannel.Text = dvbViewerDataHt["activeChannel"].ToString();
+            }
+            catch (NullReferenceException ex)
+            {
+                //ToDo: Überdenken was passieren sollte wenn der Graph geschlossen wird
+                createLog("Graph closed");
+                this.displayHandler.SetText("Graph closed");
+            }
            
             //Limit LogBox Length to 100
             if (listBoxLog.Items.Count >= 100)
